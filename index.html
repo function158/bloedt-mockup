@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="da">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <title>Logo på forside og bagside</title>
+    <link rel="stylesheet" href="css/css.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <h2 style="text-align:center;">Upload logo til forside / bagside</h2>
+
+    <div class="row">
+
+        <!-- FORSIDE -->
+        <div class="kort front">
+            <img class="base" src="images/breezer-front-hvid.jpeg" alt="Forside">
+            <img id="front-overlay" class="overlay" src="" alt="">
+
+            <label for="file-front" class="knap">Vælg logo til forside</label>
+            <input id="file-front" type="file" accept="image/*">
+            <button type="button" class="knap" id="reset-front">Nulstil logo</button>
+
+            <label for="size-front">Størrelse (forside)</label>
+            <input id="size-front" type="range" min="5" max="30" value="10">
+
+            <div class="hint">Træk for at ændre logoets størrelse på forsiden.</div>
+        </div>
+
+        <!-- BAGSIDE -->
+        <div class="kort back">
+            <img class="base" src="images/brezzer-back-hvid.jpeg" alt="Bagside">
+            <img id="back-overlay" class="overlay" src="" alt="">
+
+            <label for="file-back" class="knap">Vælg logo til bagside</label>
+            <input id="file-back" type="file" accept="image/*">
+            <button class="knap" id="reset-back">Nulstil logo</button>
+
+            <label for="size-back">Størrelse (bagside)</label>
+            <input id="size-back" type="range" min="5" max="50" value="20">
+
+            <div class="hint">Træk for at ændre logoets størrelse på bagsiden.</div>
+        </div>
+
+    </div>
+
+    <script>
+        // Upload → vis logo
+        function bindUpload(inputId, overlayId) {
+            const input = document.getElementById(inputId);
+            const overlay = document.getElementById(overlayId);
+            let url = null;
+
+            input.addEventListener("change", () => {
+                if (url) URL.revokeObjectURL(url);
+                const file = input.files && input.files[0];
+                if (!file) {
+                    overlay.src = "";
+                    return;
+                }
+                url = URL.createObjectURL(file);
+                overlay.src = url;
+            });
+        }
+
+        bindUpload("file-front", "front-overlay");
+        bindUpload("file-back", "back-overlay");
+
+        // Slider → ændr størrelse
+        const frontSize = document.getElementById("size-front");
+        const backSize = document.getElementById("size-back");
+
+        const frontOverlay = document.getElementById("front-overlay");
+        const backOverlay = document.getElementById("back-overlay");
+
+        frontOverlay.style.width = frontSize.value + "%";
+        backOverlay.style.width = backSize.value + "%";
+
+        frontSize.addEventListener("input", () => {
+            frontOverlay.style.width = frontSize.value + "%";
+        });
+
+        backSize.addEventListener("input", () => {
+            backOverlay.style.width = backSize.value + "%";
+        });
+
+     // RESET forside
+document.getElementById("reset-front").addEventListener("click", () => {
+    frontOverlay.src = "";          // Fjern logo helt
+    frontSize.value = 10;           // Standard slider-værdi
+    frontOverlay.style.width = "20%";
+    document.getElementById("file-front").value = "";   // Tøm fil-input
+});
+
+// RESET bagside
+document.getElementById("reset-back").addEventListener("click", () => {
+    backOverlay.src = "";           // Fjern logo helt
+    backSize.value = 20;            // Standard slider-værdi
+    backOverlay.style.width = "20%";
+    document.getElementById("file-back").value = "";    // Tøm fil-input
+});
+
+    </script>
+</body>
+</html>

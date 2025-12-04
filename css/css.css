@@ -1,0 +1,113 @@
+body {
+  font-family: "Montserrat", system-ui, Arial, sans-serif;
+  margin: 18px;
+  background: #f7f8fb;
+  color: #111;
+}
+
+/* Layout */
+.row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+
+.kort {
+  flex: 1 1 320px;
+  position: relative;
+  background: #fff;
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #eee;
+  text-align: center;
+}
+
+/* T-shirt billeder */
+.base {
+  width: 100%;
+  display: block;
+}
+
+/* Logo ovenpå trøjen */
+.overlay {
+  position: absolute;
+  pointer-events: none;
+  width: 20%;
+  object-fit: contain;
+}
+
+/* Placering af logo */
+.front .overlay {
+  top: 32%;
+  left: 60%;
+  transform: translate(-50%, -50%);
+}
+
+.back .overlay {
+  top: 32%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Inputs */
+label {
+  display: block;
+  margin-top: 8px;
+  font-size: 14px;
+}
+
+input[type="file"] {
+  margin-top: 6px;
+}
+
+input[type="range"] {
+  width: 100%;
+  margin-top: 8px;
+}
+
+/* Hjælpetekst */
+.hint {
+  font-size: 13px;
+  color: #666;
+  margin-top: 6px;
+}
+
+/* Mobile */
+@media (max-width: 720px) {
+  .row {
+      flex-direction: column;
+  }
+
+  .overlay {
+      width: 28%;
+  }
+}
+
+/* Gør den rigtige fil-knap usynlig */
+input[type="file"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+/* Ny, pæn knap */
+.knap {
+  display: inline-block;
+  background: #4C5B5C;
+  color: #fff;
+  padding: 10px 14px;
+  font-size: 14px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background 0.2s ease;
+}
+
+.knap:hover {
+  background: #798485;
+}
+
