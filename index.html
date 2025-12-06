@@ -1,81 +1,81 @@
-<!doctype html>
-<html lang="da">
-<head>
-    <meta charset="utf-8"/>
+<!doctype html> 
+<html lang="da"> 
+<head> 
+    <meta charset="utf-8"/> 
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <title>Bloedt Mockup</title>
-    <link rel="stylesheet" href="css/css.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap" rel="stylesheet">
-</head>
+    <title>Bloedt Mockup</title> <!--  titlen på websiden -->
+    <link rel="stylesheet" href="css/css.css"> <!-- Linker til den eksterne CSS-fil for styling af siden -->
+    <link rel="preconnect" href="https://fonts.googleapis.com"> <!-- Forbinder til Google Fonts-domænet for at forbedre indlæsningshastigheden af skrifttyper -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <!-- Forbinder til Google Fonts-domænet for statiske ressourcer, med crossorigin-attributten for CORS-kompatibilitet -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap" rel="stylesheet"> <!-- Importerer Montserrat-skrifttypen fra Google Fonts med forskellige vægte -->
+</head> 
 
-<body>
-    <h2 style="text-align:center;">Upload logo til forside / bagside</h2>
+<body> 
+    <h2 style="text-align:center;">Upload logo til forside / bagside</h2> <!-- Overskrift -->
 
-    <div class="row">
+    <section class="row"> <!-- En container-sektion med klassen "row" for at organisere indholdet i rækker -->
 
-        
-        <div class="kort front">
-            <img class="base" src="images/breezer-front-hvid.jpeg" alt="Forside">
-            <img id="front-overlay" class="overlay" src="" alt="">
+         <!-- FORSIDE --> 
+        <section class="kort front"> <!-- En section til kort-->
+            <img class="base" src="images/breezer-front-hvid.jpeg" alt="Forside"> <!-- Viser fronten af den hvide t-shirt -->
+            <img id="front-overlay" class="overlay" src="" alt=""> <!-- Her kommer det valgte logo in på forsiden af trøjen -->
 
-            <label for="file-front" class="knap">Vælg logo til forside</label>
-            <input id="file-front" type="file" accept="image/*">
-            <div class="hint">Træk for at ændre logoets størrelse på forsiden.</div>
-            <input id="size-front" type="range" min="5" max="30" value="10">
-        </div>
+            <label for="file-front" class="knap">Vælg logo til forside</label> <!-- En label, der fungerer som en knap til at vælge en fil til forsiden -->
+            <input id="file-front" type="file" accept="image/*"> <!-- Filinputfelt til at uploade et billede til forsiden. accepterer kun billedfiler -->
+            <div class="hint">Træk for at ændre logoets størrelse på forsiden.</div> <!-- En hint-tekst der beskriver hvordan man ændrer logoets størrelse med slider -->
+            <input id="size-front" type="range" min="5" max="30" value="10"> <!-- En slider til at justere størrelsen på logoet på forsiden, med min/max værdier og en standardværdi -->
+        </section>
 
-        <!-- BAGSIDE -->
-        <div class="kort back">
-            <img class="base" src="images/brezzer-back-hvid.jpeg" alt="Bagside">
-            <img id="back-overlay" class="overlay" src="" alt="">
+        <!-- BAGSIDE --> 
+        <section class="kort back"> <!-- En section med klasserne "kort" og "back" der repræsenterer kortet for bagsiden -->
+            <img class="base" src="images/brezzer-back-hvid.jpeg" alt="Bagside"> <!-- Viser grundbilledet af bagsiden af produktet -->
+            <img id="back-overlay" class="overlay" src="" alt=""> <!-- Her kommer det valgte logo in på bagsiden af trøjen -->
 
-            <label for="file-back" class="knap">Vælg logo til bagside</label>
-            <input id="file-back" type="file" accept="image/*">
+            <label for="file-back" class="knap">Vælg logo til bagside</label> <!-- En label, der fungerer som en knap til at vælge en fil til bagsiden -->
+            <input id="file-back" type="file" accept="image/*"> <!-- Filinputfelt til at uploade et billede til bagsiden, accepterer kun billedfiler -->
 
-            <div class="hint">Træk for at ændre logoets størrelse på bagsiden.</div>
-            <input id="size-back" type="range" min="5" max="50" value="20">
-        </div>
+            <div class="hint">Træk for at ændre logoets størrelse på bagsiden.</div> <!-- En hint-tekst der beskriver hvordan man ændrer logoets størrelse med slider -->
+            <input id="size-back" type="range" min="5" max="50" value="20"> <!-- En slider til at justere størrelsen på logoet på bagsiden, med min/max værdier og en standardværdi -->
+        </section> 
 
-    </div>
+    </section>
 
     <script>
-      // Upload → vis logo
-function logoUpload(inputId, overlayId) {
-    const input = document.getElementById(inputId);
-    const overlay = document.getElementById(overlayId);
+      // Upload vis logo
+function logoUpload(inputId, overlayId) { // Definerer en funktion der tager to argumenter: inputId og overlayId
+    const input = document.getElementById(inputId); // Henter HTML-elementet med det givne inputId og tildeler det til variablen 'input'
+    const overlay = document.getElementById(overlayId); // Henter HTML-elementet med det givne overlayId og tildeler det til variablen 'overlay'
 
-    input.addEventListener("change", () => {
-        const file = input.files && input.files[0];
-        if (!file) {
-            overlay.src = "";
-            return;
+    input.addEventListener("change", () => { // Tilføjer en eventlistener til input-feltet, der lytter efter ændringer (når en fil er valgt)
+        const file = input.files && input.files[0]; // Henter den første fil fra input-feltet, hvis der er nogen
+        if (!file) { // Tjekker om der ikke er valgt en fil
+            overlay.src = ""; // Hvis ingen fil er valgt, nulstiller overlay-billedets kilde
+            return; // Afslutter funktionen
         }
-        overlay.src = URL.createObjectURL(file);
+        overlay.src = URL.createObjectURL(file); // Sætter overlay-billedets kilde til en URL, der repræsenterer den valgte fil
     });
 }
 
-logoUpload("file-front", "front-overlay");
-logoUpload("file-back", "back-overlay");
+logoUpload("file-front", "front-overlay"); // Kalder logoUpload-funktionen for forsiden med de relevante ID'er
+logoUpload("file-back", "back-overlay"); // Kalder logoUpload-funktionen for bagsiden med de relevante ID'er
 
-// Slider → ændr størrelse
-const frontSize = document.getElementById("size-front");
-const backSize = document.getElementById("size-back");
+// Slider til ændring af størrelse
+const frontSize = document.getElementById("size-front"); // Henter slider-elementet til frontens logo størrelse
+const backSize = document.getElementById("size-back"); // Henter slider-elementet til bagsidens logo størrelse
 
-const frontOverlay = document.getElementById("front-overlay");
-const backOverlay = document.getElementById("back-overlay");
+const frontOverlay = document.getElementById("front-overlay"); // Henter overlay-billedet til forsiden
+const backOverlay = document.getElementById("back-overlay"); // Henter overlay-billedet til bagsiden
 
-frontOverlay.style.width = frontSize.value + "%";
-backOverlay.style.width = backSize.value + "%";
+frontOverlay.style.width = frontSize.value + "%"; // Sætter startbredden for forsidens overlay-billede baseret på sliderens værdi
+backOverlay.style.width = backSize.value + "%"; // Sætter startbredden for bagsidens overlay-billede baseret på sliderens værdi
 
-frontSize.addEventListener("input", () => {
-    frontOverlay.style.width = frontSize.value + "%";
+frontSize.addEventListener("input", () => { // Tilføjer en eventlistener til forsidens størrelsesslider, der lytter efter input-ændringer
+    frontOverlay.style.width = frontSize.value + "%"; // Opdaterer bredden for forsidens overlay-billede, når slideren flyttes
 });
 
-backSize.addEventListener("input", () => {
-    backOverlay.style.width = backSize.value + "%";
+backSize.addEventListener("input", () => { // Tilføjer en eventlistener til bagsidens størrelsesslider, der lytter efter input-ændringer
+    backOverlay.style.width = backSize.value + "%"; // Opdaterer bredden for bagsidens overlay-billede, når slideren flyttes
 });
-    </script>
-</body>
-</html>
+    </script> 
+</body> 
+</html> 
