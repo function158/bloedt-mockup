@@ -1,4 +1,4 @@
-body {
+body { /* Styler generelle egenskaber for hele siden */
   font-family: "Montserrat", system-ui, Arial, sans-serif;
   margin: 18px;
   background: #f7f8fb;
@@ -6,7 +6,7 @@ body {
 }
 
 /* Layout */
-.row {
+.row { /* Opsætter flexbox-layout for rækker af elementer */
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
@@ -15,7 +15,7 @@ body {
 }
 
 
-.kort {
+.kort { /* Styler individuelle kort-elementer */
   flex: 1 1 320px;
   position: relative;
   background: #fff;
@@ -26,13 +26,13 @@ body {
 }
 
 /* T-shirt billeder */
-.base {
+.base { /* Styler grundbillederne for T-shirts */
   width: 100%;
   display: block;
 }
 
 /* Logo ovenpå trøjen */
-.overlay {
+.overlay { /* Styler overlay-logoet på T-shirten */
   position: absolute;
   pointer-events: none;
   width: 20%;
@@ -40,43 +40,43 @@ body {
 }
 
 /* Placering af logo */
-.front .overlay {
+.front .overlay { /* Justerer placeringen af logoet på forsiden */
   top: 32%;
   left: 60%;
   transform: translate(-50%, -50%);
 }
 
-.back .overlay {
+.back .overlay { /* Justerer placeringen af logoet på bagsiden */
   top: 32%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
 
 /* Inputs */
-label {
+label { /* Styler labels for input-felter */
   display: block;
   margin-top: 8px;
   font-size: 14px;
 }
 
-input[type="file"] {
+input[type="file"] { /* Styler fil-inputfelter */
   margin-top: 6px;
 }
 
-input[type="range"] {
+input[type="range"] { /* Styler range-inputfelter (sliders) */
   width: 100%;
   margin-top: 8px;
 }
 
 /* Hjælpetekst */
-.hint {
+.hint { /* Styler hjælpetekster */
   font-size: 13px;
   color: #666;
   margin-top: 6px;
 }
 
 /* Mobile */
-@media (max-width: 720px) {
+@media (max-width: 720px) { /* Tilpasser layout til mindre skærme (mobile enheder) */
   .row {
       flex-direction: column;
   }
@@ -87,7 +87,7 @@ input[type="range"] {
 }
 
 /* Gør den rigtige fil-knap usynlig */
-input[type="file"] {
+input[type="file"] { /* Gør den originale fil-upload knap usynlig */
   position: absolute;
   opacity: 0;
   width: 0;
@@ -96,7 +96,7 @@ input[type="file"] {
 }
 
 /* Ny, pæn knap */
-.knap {
+.knap { /* Styler den brugerdefinerede knap */
   display: inline-block;
   background: #4C5B5C;
   color: #fff;
@@ -107,7 +107,7 @@ input[type="file"] {
   transition: background 0.2s ease;
 }
 
-.knap:hover {
+.knap:hover { /* Styler knappen ved hover-tilstand */
   background: #798485;
 }
 
